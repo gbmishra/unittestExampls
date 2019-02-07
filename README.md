@@ -6,7 +6,7 @@ or a small feature consisting of a few methods etc. It depends on how you define
 e.g., testing the below method could be a unit test:
 
 ```
-public int addTwoIntegers(int x, int y) {
+public Integer addTwoIntegers(Integer x, Integer y) {
   return x + y;
 }
 ```
@@ -15,6 +15,7 @@ Here, we can test
 * is it correctly adding two positive numbers ?
 * is it correctly adding two negative numbers ?
 * what if the ints are TOO BIG?
+* what if both x and y are null ?
 
 # Why do we need any testing at all? I know my code works!
 Building a software, is not just writing code. It is 'engineering'. Thats why programmers are also called as 'software engineers'.
