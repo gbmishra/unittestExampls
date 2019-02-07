@@ -2,6 +2,7 @@ package com.garageplug.unittest;
 
 import java.math.BigDecimal;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,9 +35,18 @@ public class TaxServiceTest {
     // why don't we just initialize taxService here  as 'new TaxService() ??'
     TaxService taxService;
 
+    // This method runs before each test case
     @Before
     public void setup() {
         taxService = new TaxService(taxCalculator, emailSender, smsSender);
+        // create some file, which is to be read in each test case
+    }
+
+    // runs after every test case
+    @After
+    public void tearDown() {
+        // delete any temporary files..
+        // clean up tasks..
     }
 
     // Positive case when everything works fine
@@ -53,9 +63,13 @@ public class TaxServiceTest {
             new BigDecimal(20));
 
         // set the behavior of the mocks -- all working fine
+        // when taxCalcultion is done with these values
+        // then return 200
         when(taxCalculator.calculateTax(eq(new BigDecimal(1000)), eq(new BigDecimal(20))))
             .thenReturn(new BigDecimal(200));
 
+        // when email sending is called, with these inputs
+        // then return xyz
         when(emailSender.sendEmail(eq("someEmail"), anyString(), any()))
             .thenReturn("xyz");
 
@@ -79,7 +93,9 @@ public class TaxServiceTest {
      */
     @Test
     public void calculateTaxAndNotifyCustomerWhenEmailFails() {
-
+        // set the behavior of emailSender to throw exception
+        //when(emailSender.sendEmail(eq("someEmail"), anyString(), any()))
+        //     .thenThrow(new RuntimeException(""));
     }
 
     /**
