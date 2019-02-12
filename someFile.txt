@@ -1,1 +1,7 @@
 Hello World - Gagan
+
+static void main (String... args) {
+// blah blah
+
+}
+
